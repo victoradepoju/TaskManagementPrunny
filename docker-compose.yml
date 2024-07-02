@@ -1,0 +1,23 @@
+services:
+  postgres:
+    container_name: postgres-prunny-tm
+    image: postgres
+    environment:
+      POSTGRES_USER: victor
+      POSTGRES_PASSWORD: pass
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: prunny-tm-db
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - prunny
+    restart: unless-stopped
+
+networks:
+  prunny:
+    driver: bridge
+volumes:
+  postgres:
+    driver: local
