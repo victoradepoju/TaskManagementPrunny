@@ -1,2 +1,17 @@
 server:
   port: 8088
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prunny-tm-db
+    username: victor
+    password: pass
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
