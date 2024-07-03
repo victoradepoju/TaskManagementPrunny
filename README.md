@@ -72,7 +72,7 @@ The project follows a well-organized package structure:
 - **JWT Authentication:** Secure login and registration with JWT tokens.
 - **Well secured token management:** Special attention is placed to making sure unused tokens are not littered around. Only the most recently generated token is enabled. Other are revoked to maintain higher security.
 - **Log out:** A reliable log out feature.
-- 
+  
 ### Task Management
 - **Create, Update, and Delete Tasks:** Users can manage their tasks with full CRUD functionality.
 - **Task Status Update:** Tasks can be marked as complete or incomplete.
