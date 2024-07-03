@@ -126,6 +126,54 @@ The project follows a well-organized package structure:
 4. **Access the API documentation:**
    Visit `http://localhost:8080/swagger-ui/index.html` to view the interactive API documentation.
 
+### Using Docker
+
+To simplify the setup process, you can use Docker and Docker Compose to manage your dependencies.
+
+1. **Create a `docker-compose.yml` file in the root directory:**
+
+    ```yaml
+    services:
+      postgres:
+        container_name: your_container_name
+        image: postgres
+        environment:
+          POSTGRES_USER: your_username
+          POSTGRES_PASSWORD: your_password
+          PGDATA: /var/lib/postgresql/data
+          POSTGRES_DB: your_database
+        volumes:
+          - postgres:/data/postgres
+        ports:
+          - 5432:5432
+        networks:
+          - network_name
+        restart: unless-stopped
+
+    networks:
+      network_name:
+        driver: bridge
+    volumes:
+      postgres:
+        driver: local
+    ```
+
+2. **Run Docker Compose:**
+
+    ```bash
+    docker-compose up -d
+    ```
+
+   This command will start a PostgreSQL container with the specified configuration.
+
+3. **Run the application:**
+
+    ```bash
+    mvn spring-boot:run
+    ```
+
+   Your application should now be able to connect to the PostgreSQL database running in the Docker container.
+
 ## Usage
 
 ### Authentication
