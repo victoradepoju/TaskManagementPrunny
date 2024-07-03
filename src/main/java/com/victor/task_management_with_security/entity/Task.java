@@ -20,7 +20,15 @@ import java.time.LocalDateTime;
 @Entity
 public class Task {
     @Id
-    @GeneratedValue
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "task_sequence"
+    )
+    @SequenceGenerator(
+            name = "task_sequence",
+            sequenceName = "task_sequence",
+            allocationSize = 1
+    )
     private Integer id;
     private String title;
     private String description;

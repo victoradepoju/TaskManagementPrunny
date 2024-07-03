@@ -1,7 +1,5 @@
 package com.victor.task_management_with_security.controller;
 
-import com.victor.task_management_with_security.dto.task.EditTaskRequest;
-import com.victor.task_management_with_security.dto.task.TaskResponse;
 import com.victor.task_management_with_security.dto.user.ProfileEditRequest;
 import com.victor.task_management_with_security.dto.user.UserResponse;
 import com.victor.task_management_with_security.service.user.UserService;

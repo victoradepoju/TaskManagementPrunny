@@ -87,7 +87,7 @@ public class UserService {
 
         if (!Objects.equals(userId, connectedUser.getId())) {
             throw new NotPermittedException(
-                    "You cannot edit a task that belongs to another user!"
+                    "You cannot edit a profile that belongs to another user!"
             );
         }
 
