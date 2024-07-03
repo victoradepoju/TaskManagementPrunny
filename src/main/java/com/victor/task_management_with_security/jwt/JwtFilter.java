@@ -2,6 +2,7 @@ package com.victor.task_management_with_security.jwt;
 
 import com.victor.task_management_with_security.security.CustomUserDetailsService;
 import com.victor.task_management_with_security.service.jwt.JwtService;
+import com.victor.task_management_with_security.service.token.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import java.io.IOException;
 public class JwtFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final CustomUserDetailsService customUserDetailsService;
+    private final TokenService tokenService;
 
     @Override
     protected void doFilterInternal(
@@ -29,9 +31,10 @@ public class JwtFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
+
+        String authorizationHeader = request.getHeader("Authorization");
         if ("auth/register".contains(request.getRequestURI()) && request.getMethod().equalsIgnoreCase("POST")) {
             // Check for Authorization header
-            String authorizationHeader = request.getHeader("Authorization");
             if (authorizationHeader != null) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 response.getWriter().write("Authorization header should not be present during registration.");
@@ -39,13 +42,12 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
-        String authHeader = request.getHeader("Authorization");
-        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authHeader.substring(7);
+        String token = authorizationHeader.substring(7);
         String username = jwtService.extractUsername(token);
 
         if(username != null &&
@@ -54,7 +56,9 @@ public class JwtFilter extends OncePerRequestFilter {
             UserDetails userDetails = customUserDetailsService
                     .loadUserByUsername(username);
 
-            if(jwtService.isValid(token, userDetails)) {
+            boolean isTokenValid = tokenService.findByToken(token);
+
+            if(jwtService.isValid(token, userDetails) && isTokenValid) {
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(
                                 userDetails,

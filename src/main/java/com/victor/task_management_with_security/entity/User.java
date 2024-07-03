@@ -42,6 +42,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "owner")
     private List<Task> tasks;
 
+    @OneToMany(mappedBy = "user")
+    private List<Token> token;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -58,6 +61,10 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
 }

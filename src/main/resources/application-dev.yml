@@ -2,9 +2,6 @@ server:
   port: 8088
 
 spring:
-  profiles:
-    active: dev
-
   datasource:
     url: jdbc:postgresql://localhost:5432/prunny-tm-db
     username: victor

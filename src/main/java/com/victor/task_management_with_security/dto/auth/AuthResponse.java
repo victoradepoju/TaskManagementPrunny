@@ -1,8 +1,15 @@
 package com.victor.task_management_with_security.dto.auth;
 
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
-public record AuthResponse (
-    String token
-) {}
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class AuthResponse  {
+    private String token;
+    private String message;
+}
