@@ -16,9 +16,6 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    @Value("${security.jwt.key}")
-    private String SECRET_KEY;
-
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -50,7 +47,8 @@ public class JwtService {
     }
 
     private SecretKey getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64URL.decode(SECRET_KEY);
+        String KEY = "0676af03cc10c46947f425a7a4f1d9669a7aedb62ed74a274b0ee0bd20fc08a6";
+        byte[] keyBytes = Decoders.BASE64URL.decode(KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
