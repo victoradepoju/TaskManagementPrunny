@@ -70,7 +70,7 @@ The project follows a well-organized package structure:
 
 ### Authentication
 - **JWT Authentication:** Secure login and registration with JWT tokens.
-- **Well secured token management:** Special attention is placed to making sure unused tokens are not littered around. Only the most recently generated token is enabled. Other are revoked to maintain higher security.
+- **Well secured token management:** Special attention is placed to making sure unused tokens are not littered around. Only the most recently generated token is enabled. Others are revoked to maintain higher security.
 - **Log out:** A reliable log out feature.
   
 ### Task Management
