@@ -124,7 +124,7 @@ The project follows a well-organized package structure:
     ```
 
 4. **Access the API documentation:**
-   Visit `http://localhost:8080/swagger-ui/index.html` to view the interactive API documentation.
+   Visit `http://localhost:8088/swagger-ui/index.html` to view the interactive API documentation.
 
 ### Using Docker
 
