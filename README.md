@@ -241,6 +241,11 @@ To simplify the setup process, you can use Docker and Docker Compose to manage y
     ```
     You can play with the parameters to filter and sort.
 
+- **Find Your Own Tasks:**
+    ```
+    GET /task/owner?page=0&size=10&sortByStatus=true&sortByDueDate=false&filterByStatus=false&startDate=2023-07-01&endDate=2023-07-31
+    ```
+
 ### User Management
 
 - **Find All Users:**
