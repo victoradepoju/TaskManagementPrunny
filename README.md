@@ -20,8 +20,8 @@ The project follows a well-organized package structure:
   - **dto**
     - **auth**
       - `AuthResponse`
-      - `LoginResponse`
-      - `RegisterResponse`
+      - `LoginReqest`
+      - `RegisterRequest`
     - **task**
       - `CreateTaskRequest`
       - `EditTaskRequest`
